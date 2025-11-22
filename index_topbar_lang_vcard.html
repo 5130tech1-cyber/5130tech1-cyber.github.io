@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>R-A GROCERY &amp; 513TECH • San Antonio, TX</title>
+  <style>
+    :root {
+      --ra-red: #c8102e;
+      --gold: #f4b400;
+      --dark: #111111;
+      --bg: #f5f5f7;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: #222;
+      line-height: 1.5;
+    }
+    body.lang-en .lang-en { display: inline; }
+    body.lang-en .lang-es { display: none; }
+    body.lang-es .lang-en { display: none; }
+    body.lang-es .lang-es { display: inline; }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+    header {
+      background: linear-gradient(135deg, var(--ra-red), #8b001c);
+      color: white;
+      border-radius: 18px;
+      padding: 18px 20px 16px;
+      margin-bottom: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+    }
+    header .title-block {
+      flex: 1 1 260px;
+    }
+    header h1 {
+      font-size: 1.7rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    header p.tagline {
+      font-size: 0.95rem;
+      opacity: 0.98;
+    }
+    .badge-strip {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.8rem;
+    }
+    .badge {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.35);
+      backdrop-filter: blur(6px);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .badge span { font-size: 1rem; }
+    header .right-block {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+    header .logo {
+      flex: 0 0 110px;
+      max-width: 140px;
+    }
+    header .logo img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
+    }
+    .lang-switch {
+      display: inline-flex;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.35);
+      overflow: hidden;
+      font-size: 0.8rem;
+    }
+    .lang-btn {
+      padding: 4px 10px;
+      border: none;
+      background: transparent;
+      color: #f5f5f5;
+      cursor: pointer;
+      font: inherit;
+    }
+    .lang-btn.active {
+      background: var(--gold);
+      color: #111;
+    }
+
+    .top-quick {
+      background: #000;
+      border-radius: 14px;
+      padding: 8px 10px 10px;
+      margin-bottom: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      color: #f5f5f5;
+    }
+    .top-quick-title {
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .top-quick-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .top-quick-btn {
+      flex: 1 1 135px;
+      min-width: 125px;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.82rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      background: #181818;
+      border: 1px solid #444;
+      color: #fdfdfd;
+      white-space: nowrap;
+      transition: background 0.08s ease, transform 0.08s ease, box-shadow 0.08s ease;
+    }
+    .top-quick-btn span.icon {
+      font-size: 1rem;
+    }
+    .top-quick-btn.primary {
+      background: var(--gold);
+      color: #111;
+      border-color: #fdd663;
+    }
+    .top-quick-btn:hover {
+      background: #262626;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.45);
+      transform: translateY(-1px);
+    }
+    .top-quick-btn.primary:hover {
+      background: #ffd75a;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 18px;
+      margin-bottom: 20px;
+      align-items: stretch;
+    }
+    @media (max-width: 780px) {
+      .hero {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+    .hero-text, .hero-image {
+      background: white;
+      border-radius: 18px;
+      padding: 16px 16px 18px;
+      box-shadow: 0 8px 20px rgba(15,15,30,0.08);
+    }
+    .hero-text h2 {
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+      color: var(--dark);
+    }
+    .hero-text p {
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+    .hero-text ul {
+      margin-left: 18px;
+      font-size: 0.92rem;
+    }
+    .hero-text ul li {
+      margin-bottom: 4px;
+    }
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+      object-fit: cover;
+    }
+    .label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #666;
+      margin-bottom: 4px;
+    }
+
+    .sections {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+    @media (max-width: 780px) {
+      .sections { grid-template-columns: minmax(0, 1fr); }
+    }
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 16px 16px 18px;
+      box-shadow: 0 8px 20px rgba(15,15,30,0.08);
+    }
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+    .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: #ffe9eb;
+      color: var(--ra-red);
+      margin-left: 4px;
+    }
+    .card ul {
+      margin-left: 18px;
+      font-size: 0.92rem;
+    }
+    .card ul li {
+      margin-bottom: 4px;
+    }
+    .transfer-companies {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 0.78rem;
+    }
+    .transfer-chip {
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: #003087;
+      color: #fff;
+      font-weight: 600;
+    }
+    .transfer-chip.maxi {
+      background: #009639;
+    }
+    .countries {
+      margin-top: 6px;
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    .tech-points {
+      margin-top: 6px;
+      font-size: 0.93rem;
+    }
+
+    .contact {
+      background: #000;
+      color: white;
+      border-radius: 18px;
+      padding: 18px 16px 20px;
+      margin-bottom: 8px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.4);
+    }
+    .contact h2 {
+      font-size: 1.15rem;
+      margin-bottom: 4px;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 780px) {
+      .contact-grid { grid-template-columns: minmax(0, 1fr); }
+    }
+    .contact p {
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      color: #e2e2e2;
+    }
+    .link-list {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      text-decoration: none;
+      background: #111;
+      border: 1px solid #333;
+      color: #fdfdfd;
+      font-size: 0.9rem;
+      transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.08s ease, border-color 0.08s ease;
+    }
+    .btn-link span.label-text {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+    }
+    .btn-link span.icon {
+      font-size: 1.1rem;
+      margin-right: 6px;
+    }
+    .btn-link:hover {
+      background: #181818;
+      border-color: #555;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+      transform: translateY(-1px);
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: #111;
+      border-color: #fdd663;
+    }
+    .btn-primary:hover {
+      background: #ffd75a;
+      border-color: #ffe38a;
+    }
+    .btn-outline {
+      background: transparent;
+      border-color: #555;
+    }
+    .contact-small {
+      font-size: 0.8rem;
+      color: #c5c5c5;
+      margin-top: 8px;
+    }
+    .vcard-link {
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
+    .vcard-link a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .vcard-link a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.78rem;
+      color: #777;
+      margin: 10px 0 4px;
+    }
+  </style>
+</head>
+<body class="lang-en">
+  <div class="page">
+    <header>
+      <div class="title-block">
+        <h1>R-A Grocery &amp; 513TECH</h1>
+        <p class="tagline">
+          <span class="lang-en">Corner store, money transfers &amp; phone repair in one stop.</span>
+          <span class="lang-es">Tienda de esquina, envíos de dinero y reparación de celulares en un solo lugar.</span>
+        </p>
+        <div class="badge-strip">
+          <div class="badge"><span>📍</span>2902 Guadalupe St, San Antonio, TX 78207</div>
+        </div>
+      </div>
+      <div class="right-block">
+        <div class="lang-switch" aria-label="Language selector">
+          <button class="lang-btn active" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="es">ES</button>
+        </div>
+        <div class="logo">
+          <img src="513tech_logo.png" alt="513TECH logo" />
+        </div>
+      </div>
+    </header>
+
+    <section class="top-quick">
+      <div class="top-quick-title">
+        <span class="lang-en">Quick actions</span>
+        <span class="lang-es">Acciones rápidas</span>
+      </div>
+      <div class="top-quick-row">
+        <a class="top-quick-btn primary" href="tel:12104381788">
+          <span class="icon">📞</span><span>R-A Grocery</span>
+        </a>
+        <a class="top-quick-btn" href="tel:12103600510">
+          <span class="icon">📱</span><span>513TECH</span>
+        </a>
+        <a class="top-quick-btn" href="https://wa.me/12103600510" target="_blank" rel="noopener">
+          <span class="icon">💬</span><span>WhatsApp</span>
+        </a>
+        <a class="top-quick-btn" href="https://maps.google.com/?q=2902+Guadalupe+St,+San+Antonio,+TX+78207" target="_blank" rel="noopener">
+          <span class="icon">📍</span><span>Maps</span>
+        </a>
+        <a class="top-quick-btn" href="https://www.facebook.com/513TELEFONO" target="_blank" rel="noopener">
+          <span class="icon">📘</span><span>Facebook</span>
+        </a>
+        <a class="top-quick-btn" href="https://instagram.com/5130tech" target="_blank" rel="noopener">
+          <span class="icon">📸</span><span>Instagram</span>
+        </a>
+        <a class="top-quick-btn" href="https://cash.app/$513TECH" target="_blank" rel="noopener">
+          <span class="icon">💵</span><span>CashApp</span>
+        </a>
+        <a class="top-quick-btn" href="mailto:ramzy5130@yahoo.com">
+          <span class="icon">✉️</span><span>Email</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="hero">
+      <div class="hero-text">
+        <div class="label">
+          <span class="lang-en">Welcome</span>
+          <span class="lang-es">Bienvenidos</span>
+        </div>
+        <h2>
+          <span class="lang-en">R-A Grocery • Corner Store &amp; Money Transfers</span>
+          <span class="lang-es">R-A Grocery • Tienda de esquina &amp; envíos de dinero</span>
+        </h2>
+        <p>
+          <span class="lang-en">Your local stop for everyday essentials and secure money transfers.</span>
+          <span class="lang-es">Su parada local para lo diario y envíos de dinero seguros.</span>
+        </p>
+        <ul>
+          <li>
+            <span class="lang-en">Cold drinks, snacks, ice, and groceries</span>
+            <span class="lang-es">Bebidas frías, botanas, hielo y despensa</span>
+          </li>
+          <li>
+            <span class="lang-en">Convenient location on Guadalupe St.</span>
+            <span class="lang-es">Ubicación conveniente sobre la Guadalupe St.</span>
+          </li>
+          <li>
+            <span class="lang-en">Friendly, local service in English &amp; Spanish</span>
+            <span class="lang-es">Atención amable en inglés y español</span>
+          </li>
+        </ul>
+        <div class="countries">
+          <span class="lang-en">💸 Money transfers to Mexico &amp; Central / South America with trusted companies.</span>
+          <span class="lang-es">💸 Envíos de dinero a México y países de Centro y Sudamérica con compañías confiables.</span>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="label">
+          <span class="lang-en">Our Store</span>
+          <span class="lang-es">Nuestra tienda</span>
+        </div>
+        <img src="ra_grocery_front.png" alt="Front of R-A Grocery store" />
+      </div>
+    </section>
+
+    <section class="sections">
+      <div class="card">
+        <h3>
+          <span class="lang-en">Money Transfers at R-A Grocery</span>
+          <span class="lang-es">Envíos de dinero en R-A Grocery</span>
+          <span class="pill">
+            <span class="lang-en">Send money here</span>
+            <span class="lang-es">Envía dinero aquí</span>
+          </span>
+        </h3>
+        <p>
+          <span class="lang-en">Send money to family and friends quickly with our in-store transfer services:</span>
+          <span class="lang-es">Envíe dinero a su familia y amigos fácilmente con nuestros servicios de envío en la tienda:</span>
+        </p>
+        <div class="transfer-companies">
+          <span class="transfer-chip">Intermex</span>
+          <span class="transfer-chip maxi">Maxi</span>
+        </div>
+        <ul>
+          <li>
+            <span class="lang-en">Fast, reliable transfers to Mexico &amp; many Latin American countries</span>
+            <span class="lang-es">Envíos rápidos y confiables a México y muchos países de Latinoamérica</span>
+          </li>
+          <li>
+            <span class="lang-en">In-person help with each transaction</span>
+            <span class="lang-es">Le ayudamos en persona con cada envío</span>
+          </li>
+          <li>
+            <span class="lang-en">Pay with cash at the counter</span>
+            <span class="lang-es">Pague en efectivo directamente en la caja</span>
+          </li>
+        </ul>
+        <div class="countries">
+          <span class="lang-en">Ask at the counter for supported countries and today’s fees.</span>
+          <span class="lang-es">Pregunte en la caja por los países disponibles y las tarifas del día.</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>
+          <span class="lang-en">513TECH • Electronics &amp; Smartphone Refurbishing</span>
+          <span class="lang-es">513TECH • Compra, venta y reparación de celulares</span>
+        </h3>
+        <p>
+          <span class="lang-en">513TECH refurbishes electronics so you can save money and stay connected.</span>
+          <span class="lang-es">En 513TECH reparamos y renovamos electrónicos para que ahorre dinero y siempre esté conectado.</span>
+        </p>
+        <ul class="tech-points">
+          <li>
+            <span class="lang-en">Buy, sell &amp; trade smartphones and select electronics</span>
+            <span class="lang-es">Compramos, vendemos y tomamos a cambio celulares y algunos electrónicos</span>
+          </li>
+          <li>
+            <span class="lang-en">Screen &amp; hardware repairs on many popular phone models</span>
+            <span class="lang-es">Reparación de pantallas y hardware para muchos modelos populares</span>
+          </li>
+          <li>
+            <span class="lang-en">Refurbished devices at budget-friendly prices</span>
+            <span class="lang-es">Celulares renovados a precios accesibles</span>
+          </li>
+          <li>
+            <span class="lang-en">Honest advice on whether to repair or replace</span>
+            <span class="lang-es">Consejo honesto: le decimos si conviene reparar o cambiar el equipo</span>
+          </li>
+        </ul>
+        <p style="margin-top:8px;font-size:0.9rem;">
+          <span class="lang-en">Visit us through R-A Grocery or contact us directly using the links below.</span>
+          <span class="lang-es">Visítenos a través de R-A Grocery o contáctenos directo con los botones de abajo.</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="contact">
+      <h2>
+        <span class="lang-en">Contact &amp; Quick Links</span>
+        <span class="lang-es">Contacto &amp; enlaces rápidos</span>
+      </h2>
+      <div class="contact-grid">
+        <div>
+          <p>
+            <span class="lang-en">Tap any button to call, message, or find us:</span>
+            <span class="lang-es">Toque cualquier botón para llamar, mandar mensaje o ver la ubicación:</span>
+          </p>
+          <div class="link-list">
+            <a class="btn-link btn-primary" href="tel:12104381788">
+              <span class="label-text">
+                <span class="icon">📞</span>
+                <span class="lang-en">Call R-A Grocery (Store)</span>
+                <span class="lang-es">Llamar a R-A Grocery (tienda)</span>
+              </span>
+              <span>210-438-1788</span>
+            </a>
+            <a class="btn-link btn-outline" href="tel:12103600510">
+              <span class="label-text">
+                <span class="icon">📱</span>
+                <span class="lang-en">Call / Text 513TECH</span>
+                <span class="lang-es">Llamar / mensaje a 513TECH</span>
+              </span>
+              <span>210-360-0510</span>
+            </a>
+            <a class="btn-link btn-outline" href="https://wa.me/12103600510" target="_blank" rel="noopener">
+              <span class="label-text">
+                <span class="icon">💬</span>
+                <span class="lang-en">WhatsApp 513TECH</span>
+                <span class="lang-es">WhatsApp 513TECH</span>
+              </span>
+              <span class="lang-en">Chat now</span>
+              <span class="lang-es">Chatear ahora</span>
+            </a>
+            <a class="btn-link btn-outline" href="https://maps.google.com/?q=2902+Guadalupe+St,+San+Antonio,+TX+78207" target="_blank" rel="noopener">
+              <span class="label-text">
+                <span class="icon">📍</span>
+                <span class="lang-en">Open in Google Maps</span>
+                <span class="lang-es">Abrir en Google Maps</span>
+              </span>
+              <span class="lang-en">Directions</span>
+              <span class="lang-es">Cómo llegar</span>
+            </a>
+          </div>
+        </div>
+        <div>
+          <p>
+            <span class="lang-en">Stay connected or send payments:</span>
+            <span class="lang-es">Síganos en redes o envíe pagos:</span>
+          </p>
+          <div class="link-list">
+            <a class="btn-link btn-outline" href="https://www.facebook.com/513TELEFONO" target="_blank" rel="noopener">
+              <span class="label-text">
+                <span class="icon">📘</span>
+                <span class="lang-en">Facebook</span>
+                <span class="lang-es">Facebook</span>
+              </span>
+              <span>/513TELEFONO</span>
+            </a>
+            <a class="btn-link btn-outline" href="https://instagram.com/5130tech" target="_blank" rel="noopener">
+              <span class="label-text">
+                <span class="icon">📸</span>
+                <span class="lang-en">Instagram</span>
+                <span class="lang-es">Instagram</span>
+              </span>
+              <span>@5130tech</span>
+            </a>
+            <a class="btn-link btn-outline" href="https://cash.app/$513TECH" target="_blank" rel="noopener">
+              <span class="label-text">
+                <span class="icon">💵</span>
+                <span class="lang-en">CashApp</span>
+                <span class="lang-es">CashApp</span>
+              </span>
+              <span>$513TECH</span>
+            </a>
+            <a class="btn-link btn-outline" href="mailto:ramzy5130@yahoo.com">
+              <span class="label-text">
+                <span class="icon">✉️</span>
+                <span class="lang-en">Email</span>
+                <span class="lang-es">Correo electrónico</span>
+              </span>
+              <span>ramzy5130@yahoo.com</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="vcard-link">
+        <span class="lang-en">Want to save our info?</span>
+        <span class="lang-es">¿Quiere guardar nuestros datos?</span>
+        <a href="ra_grocery_513tech.vcf" download>
+          <span class="lang-en">Download contact card (vCard)</span>
+          <span class="lang-es">Descargar tarjeta de contacto (vCard)</span>
+        </a>
+      </div>
+      <div class="contact-small">
+        R-A Grocery &amp; 513TECH • 2902 Guadalupe St, San Antonio, TX 78207
+      </div>
+    </section>
+
+    <footer>
+      © 2025 R-A Grocery &amp; 513TECH • Built for QR code visitors
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var buttons = document.querySelectorAll('.lang-btn');
+      var body = document.body;
+
+      buttons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var lang = this.getAttribute('data-lang');
+          body.classList.remove('lang-en', 'lang-es');
+          body.classList.add('lang-' + lang);
+          buttons.forEach(function(b) { b.classList.remove('active'); });
+          this.classList.add('active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
